@@ -1,0 +1,10 @@
+#!/bin/bash
+#PBS -I nodes=1:ppn:4
+#PBS -V
+#PBS -N pipeline_manager
+#PBS -l walltime=30:00:00
+#PBS -A ixx-903-aa
+export TMPDIR=/localscratch/kangjoo
+mkdir $TMPDIR
+matlab -nodisplay /sb/project/ixx-903-aa/kangjoo/Matlab_code/2_Kangjoo_matlab/SPARK/SPARKv0.6_realdata_cluster_spatialCBB/template/spark_template_fmri_kmap.m
+rm -rf $TMPDIR
