@@ -1,0 +1,55 @@
+MCR_ROOT = x \
+SPARK_DIR = x \
+$SPARK_DIR ./run_SPARK.sh $MCR_ROOT "pathname='/sb/project/ixx-903-aa/kangjoo/controls_newprotocol_2/01_prep_MNI_Controls_res4_fwhm8_scrub0.5/fmri/'; \
+\
+files_in.subject1.fmri.session1 = {[pathname,'fmri_subject1_session1_run1.mnc']}; \
+files_in.subject2.fmri.session1 = {[pathname,'fmri_subject2_session1_run1.mnc']}; \
+files_in.subject2.fmri.session2 = {[pathname,'fmri_subject2_session1_run2.mnc']}; \
+\
+path_out = '/sb/project/ixx-903-aa/kangjoo/controls_newprotocol_2/02_sparkv1.0.1_Controls_res4_fwhm8_scrub0.5/'; \
+maskpath = '/sb/project/ixx-903-aa/kangjoo/GM_mask_AAL_4mm/roi_func_total_bin_mask.mnc'; \
+\
+param.L = []; \
+param.K = []; \
+param.test_scale = (10:2:30); \ 
+param.numIteration = 20; \
+param.errorFlag = 0; \
+param.preserveDCAtom = 0; \
+param.InitializationMethod = 'GivenMatrix'; \
+param.SparsecodingMethod = 'Thresholding'; \
+param.displayProgress =1; \
+\
+opt.folder_tseries_boot.mask = maskpath; \
+opt.folder_tseries_boot.nb_samps = 100; \
+opt.folder_tseries_boot.bootstrap.dgp = 'CBB'; \
+opt.folder_tseries_boot.bootstrap.block_length = (10:30); \
+opt.folder_tseries_boot.flag = 0; \
+\
+opt.folder_kmdl.mask = opt.folder_tseries_boot.mask; \
+opt.folder_kmdl.ksvd.param = param; \
+opt.folder_kmdl.nb_samps = opt.folder_tseries_boot.nb_samps; \
+opt.folder_kmdl.bootstrap.dgp = opt.folder_tseries_boot.bootstrap.dgp; \
+opt.folder_kmdl.bootstrap.block_length = opt.folder_tseries_boot.bootstrap.block_length; \
+opt.folder_kmdl.flag = 0; \
+\
+opt.folder_global_dictionary = opt.folder_kmdl; \
+opt.folder_global_dictionary.flag = 0; \
+\
+opt.folder_kmap.pvalue = 0.01; \
+opt.folder_kmap.nb_samps = opt.folder_tseries_boot.nb_samps; \
+opt.folder_kmap.ksvd = opt.folder_kmdl.ksvd; \
+opt.folder_kmap.flag = 0; \
+\
+opt.flag_session = 1; \
+opt.folder_in = pathname; \
+opt.folder_out = path_out; \
+opt.size_output = 'quality_control'; \ 
+opt.flag_test = 0; \
+\
+opt.psom.mode = 'session'; \
+opt.psom.mode_pipeline_manager = 'session'; \
+opt.psom.max_queued = 200; \
+opt.psom.qsub_options = '-q sw -l walltime=4:00:00 -A ixx-903-aa -l nodes=1:ppn=2'; \
+opt.psom.nb_resub = 5; \
+\
+opt.flag_test = false;" "/localtmp/"
