@@ -15,7 +15,7 @@ test_dist=reshape(finalX,imageSizeX*imageSizeY,1);
 [x,n]=hist(test_dist,100);
 gmean=n(find(x == max(x)));
 for w=1:1000
-    subidx=randi([1 length(test_dist)],0.95*length(test_dist),1);
+    subidx=randi([1 length(test_dist)], ceil(0.95*length(test_dist)),1);
     stds(w)=std(test_dist(subidx));
 end;clear w
 final_std=mean(stds);
