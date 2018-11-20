@@ -42,11 +42,7 @@ vol_mask = round(vol_mask);
 k_map = niak_tseries2vol(opt_k,vol_mask);
 hdr.file_name = files_out.kmaps;
 niak_write_vol(hdr,k_map);
-
-weighted_k_map = niak_tseries2vol(weighted_opt_k,vol_mask);
-files_out.weighted_kmaps = [opt.folder_out 'weighted_kmap_' opt.label.name '.mnc.gz'];
-hdr.file_name = files_out.weighted_kmaps;
-niak_write_vol(hdr,weighted_k_map);
+[path_f,name_f,ext_f] = niak_fileparts(files_out.kmaps); clear path_f
 
 % Save output files
 if ~strcmp(files_out.kmap_all_mat,'gb_niak_omitted')
@@ -59,7 +55,7 @@ end
 for i=1:size(thrfinalX,1)
     atom=thrfinalX(i,:);
     atom_map{i} = niak_tseries2vol(atom,vol_mask);
-    hdr.file_name = [opt.folder_out,'atom' num2str(i) '_',opt.label.name '.mnc.gz'];
+    hdr.file_name = [opt.folder_out,'atom' num2str(i) '_',opt.label.name ext_f];
     niak_write_vol(hdr,atom_map{i});
 end
 
