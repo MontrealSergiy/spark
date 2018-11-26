@@ -32,7 +32,6 @@ thrfinalX(find(t<30),:)=[];
 %% compute k-hubness
 for ind=1: size(thrfinalX,2)
     opt_k(ind)=nnz(thrfinalX(:,ind));
-    weighted_opt_k(ind)=sum(thrfinalX(:,ind));
 end
 
 %% k-map generation
@@ -40,9 +39,13 @@ end
 vol_mask = round(vol_mask);
 
 k_map = niak_tseries2vol(opt_k,vol_mask);
+
+[path_f,name_f,ext_f] = niak_fileparts(files_out.kmaps); clear path_f name_f
+clear hdr
+hdr.type = ext_f
 hdr.file_name = files_out.kmaps;
 niak_write_vol(hdr,k_map);
-[path_f,name_f,ext_f] = niak_fileparts(files_out.kmaps); clear path_f
+
 
 % Save output files
 if ~strcmp(files_out.kmap_all_mat,'gb_niak_omitted')
