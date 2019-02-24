@@ -53,7 +53,7 @@ end
 opt = struct();
 
 
-f = strsplit(p.Results.fmriData,' ');
+f = strsplit(p.Results.fmriData,',');
 for k = 1:length(f)
     files_in.subject1.fmri.(['session',int2str(k)]) = f(k);
 end
