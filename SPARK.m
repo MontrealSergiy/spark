@@ -200,7 +200,7 @@ function f = checkValFunc(argName)
 switch argName
     case 'fmriData'
 %         f = @(x) cellfun(@(y) validateattributes(y,{'char'},{'nonempty'}),strsplit(x,' '));
-        f = @(x) all(cellfun(@(y) checkNonEmptyString(y),strsplit(x,' ')));
+        f = @(x) all(cellfun(@(y) checkNonEmptyString(y),strsplit(x,',')));
     case 'greyMatterMask'
 %         f = @(x) validateattributes(x,{'char'},{'nonempty'});
         f = @(x) checkNonEmptyString(x);
