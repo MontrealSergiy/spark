@@ -2,7 +2,7 @@ FROM simexp/niak-cog:1.0.1
 
 
 #author
-S.Boroday, MNI
+LABEL maintainer="S.Boroday, MNI"
 
 #metatdata
 
