@@ -15,7 +15,4 @@ COPY  .  /spark
 
 ENV PATH="/spark:${PATH}"
 
-
-
-
-
+RUN chmod +x -R /spark
